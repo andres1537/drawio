@@ -10,6 +10,7 @@ Draw.loadPlugin(function(ui) {
 
     function PropertyModel() {
         this.Name = null;
+		this.DataType = null;
         this.Value = null;
         this.TableName = null;
         this.ForeignKey = [];
@@ -80,7 +81,7 @@ Draw.loadPlugin(function(ui) {
 
     function AddRow(propertyModel, tableName) {
 
-        var cellName = propertyModel.Name;
+        var cellName = propertyModel.Name + ' ' + propertyModel.DataType;
 
         if (propertyModel.IsForeignKey && propertyModel.ForeignKey !== undefined && propertyModel.ForeignKey !== null) {
             propertyModel.ForeignKey.forEach(function(foreignKeyModel) {
@@ -92,17 +93,17 @@ Draw.loadPlugin(function(ui) {
             })
         }
 
-        rowCell = new mxCell(cellName, new mxGeometry(0, 0, 90, 26),
-            'shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;spacingTop=-2;fillColor=none;spacingLeft=64;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;');
+        rowCell = new mxCell(cellName, new mxGeometry(0, 0, 90, 22),
+            'shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;spacingTop=-2;fillColor=#f8cecc;spacingLeft=64;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;strokeColor=#b85450;');
         rowCell.vertex = true;
 
         var columnType = propertyModel.IsPrimaryKey && propertyModel.IsForeignKey ? 'PK | FK' : propertyModel.IsPrimaryKey ? 'PK' : propertyModel.IsForeignKey ? 'FK' : '';
 
         var left = sb.cloneCell(rowCell, columnType);
         left.connectable = false;
-        left.style = 'shape=partialRectangle;top=0;left=0;bottom=0;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=180;points=[];portConstraint=eastwest;part=1;'
+        left.style = 'shape=partialRectangle;top=0;left=0;bottom=0;fillColor=#f8cecc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=180;points=[];portConstraint=eastwest;part=1;'
         left.geometry.width = 54;
-        left.geometry.height = 26;
+        left.geometry.height = 22;
         rowCell.insert(left);
 
         var size = ui.editor.graph.getPreferredSizeForCell(rowCell);
@@ -112,7 +113,7 @@ Draw.loadPlugin(function(ui) {
         }
 
         tableCell.insert(rowCell);
-        tableCell.geometry.height += 26;
+        tableCell.geometry.height += 22;
 
         rowCell = rowCell;
 
@@ -274,11 +275,12 @@ Draw.loadPlugin(function(ui) {
         return primaryKey;
     };
 
-    function CreateProperty(name, tableName, foreignKey, isPrimaryKey) {
+    function CreateProperty(name, dataType, tableName, foreignKey, isPrimaryKey) {
         var property = new PropertyModel;
         var isForeignKey = foreignKey !== undefined && foreignKey !== null;
 
         property.Name = name;
+		property.DataType = dataType;
         property.TableName = tableName;
         property.ForeignKey = isForeignKey ? foreignKey : [];
         property.IsForeignKey = isForeignKey;
@@ -439,10 +441,13 @@ Draw.loadPlugin(function(ui) {
 
                         //Get full name
                         name = name.substring(0, firstSpaceIndex);
+						
+						//Get data type
+						var dataType = name.substring(firstSpaceIndex + 1);
                     }
 
                     //Create Property
-                    var propertyModel = CreateProperty(name, currentTableModel.Name, null, false, false);
+                    var propertyModel = CreateProperty(name, dataType, currentTableModel.Name, null, false, false);
 
                     //Add Property to table
                     currentTableModel.Properties.push(propertyModel);
@@ -551,8 +556,8 @@ Draw.loadPlugin(function(ui) {
             var maxNameLenght = 100 + tableModel.Name.length;
 
             //Create Table
-            tableCell = new mxCell(tableModel.Name, new mxGeometry(dx, 0, maxNameLenght, 26),
-                'swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e0e0e0;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;align=center;');
+            tableCell = new mxCell(tableModel.Name, new mxGeometry(dx, 0, maxNameLenght, 22),
+                'swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=22;fillColor=#f8cecc;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;swimlaneFillColor=#f8cecc;align=center;strokeColor=#b85450;fontSize=13;shadow=1');
             tableCell.vertex = true;
 
             //Resize row
@@ -603,7 +608,15 @@ Draw.loadPlugin(function(ui) {
     resetBtn.style.padding = '4px';
     div.appendChild(resetBtn);
 
-    var btn = mxUtils.button('Insert MySQL', function() {
+    var btn = mxUtils.button('Insert BigQuery', function() {
+        parseSql(sqlInput.value);
+    });
+
+    btn.style.marginTop = '8px';
+    btn.style.padding = '4px';
+    div.appendChild(btn);
+	
+	var btn = mxUtils.button('Insert MySQL', function() {
         parseSql(sqlInput.value);
     });
 
