@@ -101,7 +101,7 @@ Draw.loadPlugin(function(ui) {
 
         var left = sb.cloneCell(rowCell, columnType);
         left.connectable = false;
-        left.style = 'childLayout=stackLayout;horizontal=1;ellipse;startSize=32;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;flipH=1;flipV=1;fillColor=#0050ef;strokeColor=none;fontColor=none;noLabel=1;'
+        left.style = 'shape=partialRectangle;top=0;left=0;bottom=0;fillColor=#f8cecc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=180;points=[];portConstraint=eastwest;part=1;strokeColor=#333333;opacity=50;fontColor=#333333;'
         left.geometry.width = 54;
         left.geometry.height = 22;
         rowCell.insert(left);
@@ -567,9 +567,9 @@ Draw.loadPlugin(function(ui) {
             }
 			
 			//Add circle to cells
-			var left = sb.cloneCell(tableCell, "H");
+			var left = sb.cloneCell(tableCell);
 			left.connectable = false;
-			left.style = 'ellipse;whiteSpace=wrap;html=1;aspect=fixed;'
+			left.style = 'childLayout=stackLayout;horizontal=1;ellipse;startSize=32;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;flipH=1;flipV=1;fillColor=#0050ef;strokeColor=none;fontColor=none;noLabel=1;'
 			left.geometry.width = 15;
 			left.geometry.height = 15;
 			tableCell.insert(left);
