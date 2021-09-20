@@ -101,7 +101,7 @@ Draw.loadPlugin(function(ui) {
 
         var left = sb.cloneCell(rowCell, columnType);
         left.connectable = false;
-        left.style = 'shape=partialRectangle;top=0;left=0;bottom=0;fillColor=#f8cecc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=180;points=[];portConstraint=eastwest;part=1;strokeColor=#333333;opacity=50;fontColor=#333333;'
+        left.style = 'childLayout=stackLayout;horizontal=1;ellipse;startSize=32;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;flipH=1;flipV=1;fillColor=#0050ef;strokeColor=none;fontColor=none;noLabel=1;'
         left.geometry.width = 54;
         left.geometry.height = 22;
         rowCell.insert(left);
