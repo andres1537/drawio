@@ -94,7 +94,7 @@ Draw.loadPlugin(function(ui) {
         }
 
         rowCell = new mxCell(cellName, new mxGeometry(0, 0, 90, 22),
-            'shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;spacingTop=-2;fillColor=#f8cecc;spacingLeft=64;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;strokeColor=#f8cecc;');
+            'shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;spacingTop=-2;fillColor=#f8cecc;spacingLeft=64;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;strokeColor=#b85450;');
         rowCell.vertex = true;
 
         var columnType = propertyModel.IsPrimaryKey && propertyModel.IsForeignKey ? 'PK | FK' : propertyModel.IsPrimaryKey ? 'PK' : propertyModel.IsForeignKey ? 'FK' : '';
@@ -608,7 +608,7 @@ Draw.loadPlugin(function(ui) {
     resetBtn.style.padding = '4px';
     div.appendChild(resetBtn);
 
-    var btn = mxUtils.button('Insert BigQuery', function() {
+    var btn = mxUtils.button('From BigQuery', function() {
         parseSql(sqlInput.value);
     });
 
@@ -616,7 +616,7 @@ Draw.loadPlugin(function(ui) {
     btn.style.padding = '4px';
     div.appendChild(btn);
 	
-	var btn = mxUtils.button('Insert MySQL', function() {
+	var btn = mxUtils.button('From MySQL', function() {
         parseSql(sqlInput.value);
     });
 
@@ -624,7 +624,7 @@ Draw.loadPlugin(function(ui) {
     btn.style.padding = '4px';
     div.appendChild(btn);
 
-    var btn = mxUtils.button('Insert SQL Server', function() {
+    var btn = mxUtils.button('From SQL Server', function() {
         parseSql(sqlInput.value, 'sqlserver');
     });
 
