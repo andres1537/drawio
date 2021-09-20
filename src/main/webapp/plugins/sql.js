@@ -94,14 +94,14 @@ Draw.loadPlugin(function(ui) {
         }
 
         rowCell = new mxCell(cellName, new mxGeometry(0, 0, 90, 22),
-            'shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;spacingTop=-2;fillColor=#f8cecc;spacingLeft=64;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;strokeColor=#b85450;');
+            'shape=partialRectangle;top=0;left=0;right=0;bottom=0;align=left;verticalAlign=top;spacingTop=-2;fillColor=#f8cecc;spacingLeft=64;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;strokeColor=#333333;');
         rowCell.vertex = true;
 
         var columnType = propertyModel.IsPrimaryKey && propertyModel.IsForeignKey ? 'PK | FK' : propertyModel.IsPrimaryKey ? 'PK' : propertyModel.IsForeignKey ? 'FK' : '';
 
         var left = sb.cloneCell(rowCell, columnType);
         left.connectable = false;
-        left.style = 'shape=partialRectangle;top=0;left=0;bottom=0;fillColor=#f8cecc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=180;points=[];portConstraint=eastwest;part=1;'
+        left.style = 'shape=partialRectangle;top=0;left=0;bottom=0;fillColor=#f8cecc;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=180;points=[];portConstraint=eastwest;part=1;strokeColor=#333333;opacity=50;'
         left.geometry.width = 54;
         left.geometry.height = 22;
         rowCell.insert(left);
@@ -557,7 +557,7 @@ Draw.loadPlugin(function(ui) {
 
             //Create Table
             tableCell = new mxCell(tableModel.Name, new mxGeometry(dx, 0, maxNameLenght, 22),
-                'swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=22;fillColor=#f8cecc;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;swimlaneFillColor=#f8cecc;align=center;strokeColor=#f8cecc;fontSize=13;shadow=1');
+                'swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=32;fillColor=#f8cecc;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=0;marginBottom=0;swimlaneFillColor=#f8cecc;align=center;strokeColor=#333333;fontSize=13;shadow=1;opacity=50;');
             tableCell.vertex = true;
 
             //Resize row
