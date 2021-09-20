@@ -565,6 +565,14 @@ Draw.loadPlugin(function(ui) {
             if (size !== null) {
                 tableCell.geometry.width = size.width + maxNameLenght;
             }
+			
+			//Add circle to cells
+			var left = sb.cloneCell(tableCell, "H");
+			left.connectable = false;
+			left.style = 'ellipse;whiteSpace=wrap;html=1;aspect=fixed;'
+			left.geometry.width = 15;
+			left.geometry.height = 15;
+			tableCell.insert(left);
 
             //Add Table to cells
             cells.push(tableCell);
